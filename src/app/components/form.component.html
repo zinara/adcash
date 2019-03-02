@@ -1,0 +1,79 @@
+<!-- <div class="container">
+  <h3 class="col-md title"> Adcash test assignment</h3>
+  <h5 class="col-md subtitle"> Type tags here using comma, semicolon and line breaks as delimiters </h5>
+
+  <textarea class="text-tags"></textarea>
+</div> -->
+
+<div class="container">
+  <form>
+    <div class="form-group item">
+        <h3 class="col-md title"> Adcash test assignment</h3>
+      <label for="exampleFormControlTextarea1">Type tags here using comma, semicolon and line breaks as delimiters</label>
+      <textarea 
+      class="form-control" 
+      id="exampleFormControlTextarea1"
+       rows="3"
+       [(ngModel)]="arrayTags"
+       name="tags"
+      ></textarea>
+      <button type="button" class="btn btn-primary" [style.margin-top.px]='10' (click)='addTags()'>Add tags</button>
+    </div>
+
+    <div class="form-group item">
+
+      <div class="row" [style.height.px]='100'
+       style="background: rgba(202, 199, 199, 0.904);">
+       <!--Looping through the main tags-->
+     <div *ngFor="let tag of mainTags"
+         style="width: auto; margin-top: 10px; margin-left: 5px;"> 
+        
+         <!--specifying condition for tags with values less than 0-->
+            <div class="btn-group mr-2" role="group" aria-label="tag group"  *ngIf="tag >= 0; else blue; ">
+                <button type="button" class="btn btn-danger">{{tag}}</button>
+                <button type="button" class="btn btn-danger" (click)="deleteTag(tag)">&times;</button>
+              </div>
+        
+  
+          <ng-template #blue>
+              <div class="btn-group mr-2"  role="group" aria-label="tag group">
+              <button type="button" class="btn btn-primary">{{tag}}</button>
+              <button type="button" class="btn btn-primary" (click)="deleteTag(tag)" >&times;</button>
+            </div>
+        </ng-template> 
+
+       </div>
+
+
+      </div>
+
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" [style.margin-top.px]='10' 
+ data-toggle="modal" data-target="#exampleModalCenter" [disabled]="mainTags == 0" (click)="editTags()" >
+    Edit tags
+  </button> 
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Edit Tags</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <textarea rows="3" cols="60" [(ngModel)]="arrayString" name="stringarr" >{{arrayString}} </textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="save()" >Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </form>
+</div>
+
+
